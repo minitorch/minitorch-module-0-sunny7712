@@ -22,7 +22,6 @@ from minitorch.operators import (
     prod,
     relu,
     relu_back,
-    sigmoid,
 )
 
 from .strategies import assert_close, small_floats
