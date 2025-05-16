@@ -136,43 +136,55 @@ def relu_back(x: float, dout: float) -> float:
 
 def map(fn: Callable[[float], float]) -> Callable[[Iterable[float]], Iterable[float]]:
     """Map a function over a list."""
-    def apply(ls : Iterable[float]) -> Iterable[float]:
+
+    def apply(ls: Iterable[float]) -> Iterable[float]:
         return [fn(x) for x in ls]
+
     return apply
 
-def zipWith(fn: Callable[[float, float], float]) -> Callable[[Iterable[float], Iterable[float]], Iterable[float]]:
+
+def zipWith(
+    fn: Callable[[float, float], float],
+) -> Callable[[Iterable[float], Iterable[float]], Iterable[float]]:
     """Zip two lists and apply a function."""
+
     def apply(ls1: Iterable[float], ls2: Iterable[float]) -> Iterable[float]:
         return [fn(x, y) for x, y in zip(ls1, ls2)]
+
     return apply
+
 
 def reduce(fn: Callable[[float, float], float]) -> Callable[[Iterable[float]], float]:
     """Reduce a list using a function."""
+
     def apply(ls: Iterable[float]) -> float:
         ls = list(ls)
-        result  = 0
+        result = 0
         if len(ls) > 0:
             result = ls[0]
         if len(ls) > 1:
             for x in ls[1:]:
                 result = fn(result, x)
         return result
+
     return apply
+
 
 def negList(ls: Iterable[float]) -> Iterable[float]:
     """Negate a list."""
     return map(neg)(ls)
 
+
 def addLists(ls1: Iterable[float], ls2: Iterable[float]) -> Iterable[float]:
     """Add two lists together."""
     return zipWith(add)(ls1, ls2)
+
 
 def sum(ls: Iterable[float]) -> float:
     """Sum a list."""
     return reduce(add)(ls)
 
+
 def prod(ls: Iterable[float]) -> float:
     """Take the product of a list."""
     return reduce(mul)(ls)
-
-

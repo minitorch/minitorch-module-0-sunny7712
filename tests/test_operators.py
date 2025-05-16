@@ -1,7 +1,7 @@
 from typing import Callable, List, Tuple
 
 import pytest
-from hypothesis import given, assume
+from hypothesis import given
 from hypothesis.strategies import lists
 
 from minitorch import MathTest
@@ -110,7 +110,9 @@ def test_sigmoid(a: float) -> None:
     assert sigmoid(a) >= 0.0 and sigmoid(a) <= 1.0
     assert sigmoid(0.0) == 0.5
     assert_close(1 - sigmoid(a), sigmoid(-a))
-    assert sigmoid(a) * (1 - sigmoid(a)) >= 0.0 # derivative is positive. So increasing. But almost saturates at 1. Hence equal to 0.0.
+    assert (
+        sigmoid(a) * (1 - sigmoid(a)) >= 0.0
+    )  # derivative is positive. So increasing. But almost saturates at 1. Hence equal to 0.0.
 
 
 @pytest.mark.task0_2
@@ -137,13 +139,14 @@ def test_distribute(a: float, b: float, c: float) -> None:
     r"""Write a test that ensures that your operators distribute, i.e.
     :math:`z \times (x + y) = z \times x + z \times y`
     """
-    assert(mul(a, add(b, c)) == add(mul(a, b), mul(a, c)))
-    assert(mul(add(a, b), c) == add(mul(a, c), mul(b, c)))
+    assert mul(a, add(b, c)) == add(mul(a, b), mul(a, c))
+    assert mul(add(a, b), c) == add(mul(a, c), mul(b, c))
 
 
 @pytest.mark.task0_2
 def test_other() -> None:
     """Write a test that ensures some other property holds for your functions."""
+
     @given(small_floats, small_floats)
     def test_commutative_addition(a: float, b: float) -> None:
         """Test that addition is commutative, i.e., a + b == b + a."""

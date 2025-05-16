@@ -5,14 +5,16 @@ from typing import List, Tuple, Callable
 
 
 def make_pts(N: int) -> List[Tuple[float, float]]:
-    """
-    Generate N random 2D points with coordinates between 0 and 1.
-    
+    """Generate N random 2D points with coordinates between 0 and 1.
+
     Args:
+    ----
         N: Number of points to generate
-        
+
     Returns:
+    -------
         List of tuples containing (x_1, x_2) coordinates
+
     """
     X = []
     for i in range(N):
@@ -24,28 +26,32 @@ def make_pts(N: int) -> List[Tuple[float, float]]:
 
 @dataclass
 class Graph:
-    """
-    A data structure representing a set of 2D points with binary classifications.
-    
-    Attributes:
+    """A data structure representing a set of 2D points with binary classifications.
+
+    Attributes
+    ----------
         N: Number of points in the dataset
         X: List of (x_1, x_2) coordinates for each point
         y: List of binary classifications (0 or 1) for each point
+
     """
+
     N: int
     X: List[Tuple[float, float]]
     y: List[int]
 
 
 def simple(N: int) -> Graph:
-    """
-    Create a dataset with a simple vertical decision boundary at x_1 = 0.5.
-    
+    """Create a dataset with a simple vertical decision boundary at x_1 = 0.5.
+
     Args:
+    ----
         N: Number of points to generate
-        
+
     Returns:
+    -------
         Graph object containing the dataset
+
     """
     X = make_pts(N)
     y = []
@@ -56,14 +62,16 @@ def simple(N: int) -> Graph:
 
 
 def diag(N: int) -> Graph:
-    """
-    Create a dataset with a diagonal decision boundary at x_1 + x_2 = 0.5.
-    
+    """Create a dataset with a diagonal decision boundary at x_1 + x_2 = 0.5.
+
     Args:
+    ----
         N: Number of points to generate
-        
+
     Returns:
+    -------
         Graph object containing the dataset
+
     """
     X = make_pts(N)
     y = []
@@ -74,14 +82,16 @@ def diag(N: int) -> Graph:
 
 
 def split(N: int) -> Graph:
-    """
-    Create a dataset with two vertical decision boundaries at x_1 = 0.2 and x_1 = 0.8.
-    
+    """Create a dataset with two vertical decision boundaries at x_1 = 0.2 and x_1 = 0.8.
+
     Args:
+    ----
         N: Number of points to generate
-        
+
     Returns:
+    -------
         Graph object containing the dataset
+
     """
     X = make_pts(N)
     y = []
@@ -92,14 +102,16 @@ def split(N: int) -> Graph:
 
 
 def xor(N: int) -> Graph:
-    """
-    Create a dataset with an XOR-like pattern of decision boundaries.
-    
+    """Create a dataset with an XOR-like pattern of decision boundaries.
+
     Args:
+    ----
         N: Number of points to generate
-        
+
     Returns:
+    -------
         Graph object containing the dataset
+
     """
     X = make_pts(N)
     y = []
@@ -110,14 +122,16 @@ def xor(N: int) -> Graph:
 
 
 def circle(N: int) -> Graph:
-    """
-    Create a dataset with a circular decision boundary centered at (0.5, 0.5).
-    
+    """Create a dataset with a circular decision boundary centered at (0.5, 0.5).
+
     Args:
+    ----
         N: Number of points to generate
-        
+
     Returns:
+    -------
         Graph object containing the dataset
+
     """
     X = make_pts(N)
     y = []
@@ -129,15 +143,18 @@ def circle(N: int) -> Graph:
 
 
 def spiral(N: int) -> Graph:
-    """
-    Create a dataset with a spiral pattern decision boundary.
-    
+    """Create a dataset with a spiral pattern decision boundary.
+
     Args:
+    ----
         N: Number of points to generate
-        
+
     Returns:
+    -------
         Graph object containing the dataset
+
     """
+
     def x(t: float) -> float:
         return t * math.cos(t) / 20.0
 
